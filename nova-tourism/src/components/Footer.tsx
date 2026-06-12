@@ -33,7 +33,7 @@ export default function Footer() {
               className="w-9 h-9 rounded-full bg-green-600 flex items-center justify-center hover:scale-110 transition-transform">
               <MessageCircle size={16} className="text-white" />
             </a>
-            <a href="https://www.instagram.com/nova_tourism_and_events?igsh=MWg0eDU4N3dpbXpzNQ==" target="_blank" rel="noreferrer"
+            <a href="https://www.instagram.com/novatourism.in?igsh=MTRsNnc0a3Q2cGpoeQ==" target="_blank" rel="noreferrer"
             className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
             style={{ background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="white">

@@ -71,7 +71,7 @@ export default function Contact() {
                 className="flex items-center gap-2 bg-green-600/20 border border-green-500/30 text-green-400 px-4 py-2 rounded-full text-sm hover:bg-green-600/30 transition-colors">
                 <MessageCircle size={14} /> WhatsApp
               </a>
-             <a href="https://www.instagram.com/nova_tourism_and_events?igsh=MWg0eDU4N3dpbXpzNQ==" target="_blank" rel="noreferrer"
+             <a href="https://www.instagram.com/novatourism.in?igsh=MTRsNnc0a3Q2cGpoeQ==" target="_blank" rel="noreferrer"
                  className="flex items-center gap-2 px-4 py-2 rounded-full text-sm hover:opacity-80 transition-opacity"
                 style={{ background: 'rgba(219,39,119,0.15)', border: '1px solid rgba(219,39,119,0.3)', color: '#f472b6' }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
