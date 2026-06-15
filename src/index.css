@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  /* ── New Brand Colors ── */
+  --nova-primary:   #0A4C8A;   /* Deep Blue */
+  --nova-secondary: #F4A623;   /* Golden Orange */
+  --nova-accent:    #00B4D8;   /* Sky Blue */
+  --nova-dark:      #1A1A2E;   /* Almost Black */
+  --nova-light:     #F8F9FA;   /* Off White */
+
+  /* ── Keep existing for backward compat ── */
+  --color-nova-red:    #e63228;
+  --color-nova-orange: #f7941d;
+  --color-nova-green:  #5dac46;
+
+  /* ── Fonts ── */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body:    'Poppins', sans-serif;
+  --font-accent:  'Pacifico', cursive;
+}
+
+* { scroll-behavior: smooth; box-sizing: border-box; }
+
+body {
+  background-color: #ffffff;
+  color: var(--nova-dark);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+}
+
+.font-pacifico { font-family: var(--font-accent); }
+.font-poppins  { font-family: var(--font-body); }
+
+/* ── Nova Gradients ── */
+.nova-gradient {
+  background: linear-gradient(135deg, #e63228 0%, #f7941d 50%, #8dc63f 100%);
+}
+.nova-gradient-blue {
+  background: linear-gradient(135deg, #0A4C8A, #00B4D8);
+}
+.nova-text-gradient {
+  background: linear-gradient(135deg, #e63228, #f7941d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nova-text-blue {
+  background: linear-gradient(135deg, #0A4C8A, #00B4D8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#0A4C8A, #00B4D8);
+  border-radius: 10px;
+}
+
+/* ── Marquee Animations ── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee         { animation: marquee 55s linear infinite; }
+.animate-marquee-gallery { animation: marquee 150s linear infinite; }
+.animate-marquee-reverse { animation: marquee-reverse 150s linear infinite; }
+.animate-marquee:hover,
+.animate-marquee-reverse:hover { animation-play-state: paused; }
+
+
+/* ── Mobile Responsive Overrides ──────────────────────────── */
+
+/* Prevent text overflow on small screens */
+@media (max-width: 640px) {
+  h1 { word-break: break-word; }
+  
+  /* Reduce excessive section padding on mobile */
+  .nova-section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Hide horizontal scrollbar on nav */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ── Mobile-specific hero fix ─────────────────────────────── */
+@media (max-width: 768px) {
+  /* Make top contact bar scrollable on mobile */
+  .nova-topbar {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce card grid gaps on mobile */
+  .nova-card-grid {
+    gap: 0.75rem;
+  }
+}
