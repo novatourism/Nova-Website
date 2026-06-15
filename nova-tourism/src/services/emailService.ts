@@ -14,19 +14,25 @@ export interface EnquiryData {
 }
 
 export async function sendEnquiryEmail(data: EnquiryData): Promise<void> {
-  await emailjs.send(
-    SERVICE_ID,
-    TEMPLATE_ID,
-    {
-      from_name:        data.name,
-      name:             data.name,           // ← fixes {{name}} in body text
-      from_email:       data.email,
-      email:            data.email,          // ← fixes {{email}} in Reply To
-      phone:            data.phone || 'Not provided',
-      package_interest: data.package_interest || 'General Enquiry',
-      message:          data.message || 'No message',
-      to_email:         'novatourism.info@gmail.com',
-    },
-    PUBLIC_KEY
-  )
+  try {
+    const result = await emailjs.send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      {
+        from_name:        data.name,
+        name:             data.name,
+        from_email:       data.email,
+        email:            data.email,
+        phone:            data.phone || 'Not provided',
+        package_interest: data.package_interest || 'General Enquiry',
+        message:          data.message || 'No message',
+        to_email:         'novatourism.info@gmail.com',
+      },
+      PUBLIC_KEY
+    )
+    console.log('EmailJS success:', result)
+  } catch (err) {
+    console.error('EmailJS error:', JSON.stringify(err))
+    throw err
+  }
 }

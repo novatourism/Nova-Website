@@ -47,7 +47,7 @@ useEffect(() => {
 
   const timer = setInterval(() => {
     setCurrentIndex(i => (i + 1) % videos.length)
-  }, 1000) // every 1 second
+  }, 3000) // every 3 seconds
 
   return () => clearInterval(timer)
 
@@ -73,9 +73,9 @@ useEffect(() => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-[#f7941d] text-sm font-semibold tracking-widest uppercase mb-3">Hear From Them</p>
-          <h2 className="text-4xl font-black text-gray-900 mb-3">Video <span 
-              className="nova-text-gradient">Reviews</span>
+          <p className="text-[#0A4C8A] text-sm font-semibold tracking-widest uppercase mb-3">Hear From Them</p>
+          <h2 className="text-4xl font-black text-gray-900 mb-3">Video <span
+              style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Reviews</span>
           </h2>
           <p className="text-gray-500">Real experiences from real travelers</p>
         </motion.div>
@@ -85,11 +85,11 @@ useEffect(() => {
           {videos.length > 3 && (
             <>
               <button onClick={prev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:border-orange-400 transition-colors">
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:border-blue-400 transition-colors">
                 <ChevronLeft size={18} className="text-gray-700" />
               </button>
               <button onClick={next}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:border-orange-400 transition-colors">
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:border-blue-400 transition-colors">
                 <ChevronRight size={18} className="text-gray-700" />
               </button>
             </>
@@ -117,7 +117,7 @@ useEffect(() => {
                 {/* Play button */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform mb-3"
-                    style={{ background: 'linear-gradient(135deg,#e63228,#f7941d)' }}>
+                    style={{ background: 'linear-gradient(135deg,#0A4C8A,#00B4D8)' }}>
                     <Play size={24} className="text-white ml-1" fill="white" />
                   </div>
                   <p className="text-white text-sm font-semibold text-center px-4 drop-shadow-lg">{video.title}</p>
@@ -132,7 +132,7 @@ useEffect(() => {
               {videos.map((_, i) => (
                 <button key={i} onClick={() => setCurrentIndex(i)}
                   className={`w-2 h-2 rounded-full transition-all ${
-                    i === currentIndex ? 'bg-[#f7941d] w-5' : 'bg-gray-300'
+                    i === currentIndex ? 'bg-[#00B4D8] w-5' : 'bg-gray-300'
                   }`} />
               ))}
             </div>
@@ -150,7 +150,7 @@ useEffect(() => {
             className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
             onClick={() => setPlaying(null)}
           >
-            <button className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-red-500/50 transition-colors">
+            <button className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-500/50 transition-colors">
               <X size={20} />
             </button>
             <motion.video

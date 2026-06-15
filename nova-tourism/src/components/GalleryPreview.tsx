@@ -37,18 +37,16 @@ export default function GalleryPreview() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-end justify-between"
+          className="flex flex-col items-center text-center"
         >
-          <div>
-            <p className="text-[#f7941d] text-sm font-semibold tracking-widest uppercase mb-2">Our Memories</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900">
-              Moments We've <span className="nova-text-gradient">Captured</span>
-            </h2>
-          </div>
+          <p className="text-[#0A4C8A] text-sm font-semibold tracking-widest uppercase mb-2">Our Memories</p>
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+            Moments We've <span style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Captured</span>
+          </h2>
           <Link
             to="/gallery"
             className="hidden md:flex items-center gap-2 font-semibold text-sm hover:gap-3 transition-all"
-            style={{ color: '#e63228' }}
+            style={{ color: '#0A4C8A' }}
           >
             View Full Gallery <ArrowRight size={14} />
           </Link>

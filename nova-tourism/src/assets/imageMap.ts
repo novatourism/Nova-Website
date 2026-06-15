@@ -5,8 +5,7 @@ declare global {
   }
 }
 
-// nova-tourism/src/assets/imageMap.ts
-
+// ─── Regular images from /images/ ─────────────────────────
 const modules = import.meta.glob<{ default: string }>(
   './images/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP,gif}',
   { eager: true }
@@ -16,42 +15,56 @@ export const imageMap: Record<string, string> = {}
 
 for (const [path, mod] of Object.entries(modules)) {
   const filename = path.replace('./images/', '')
-  if (mod?.default) {
-    imageMap[filename] = mod.default
-  }
+  if (mod?.default) imageMap[filename] = mod.default
 }
 
-console.log("IMAGE KEYS:", Object.keys(imageMap).sort())
+// ─── Service folder images from /Services/ ─────────────────
+const serviceModules = import.meta.glob<{ default: string }>(
+  './Services/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP,gif}',
+  { eager: true }
+)
 
-// ─── Exact filename match ─────────────────────────────────
-// img('school-trip.jpg') or img('school-trip1.jpg')
+export const serviceImageMap: Record<string, string[]> = {}
+
+for (const [path, mod] of Object.entries(serviceModules)) {
+  if (!mod?.default) continue
+  // path = './Services/Adventure Tours & Weekend Getaways/img1.jpg'
+  const relativePath = path.replace('./Services/', '')
+  const folder = relativePath.split('/')[0]   // 'Adventure Tours & Weekend Getaways'
+  if (!serviceImageMap[folder]) serviceImageMap[folder] = []
+  serviceImageMap[folder].push(mod.default)
+}
+
+// Get all images for a specific service folder (used in ServiceCard)
+export function getServiceImages(folderName: string): string[] {
+  return serviceImageMap[folderName] || []
+}
+
+// Get ALL service images with folder info (used in Gallery)
+export function getAllServiceImages(): Array<{ url: string; folder: string }> {
+  return Object.entries(serviceImageMap).flatMap(([folder, urls]) =>
+    urls.map(url => ({ url, folder }))
+  )
+}
+
+// ─── Existing utility functions ─────────────────────────────
 export function img(filename: string, fallback = ''): string {
   return imageMap[filename] || fallback
 }
 
-// ─── Prefix match — finds school-trip1.jpg, school-trip2.jpg etc ──
-// imgByPrefix('school-trip') → returns first matching image URL
 export function imgByPrefix(prefix: string, fallback = ''): string {
-  // 1. Try exact match first (school-trip.jpg)
   const extensions = ['.jpg', '.jpeg', '.png', '.webp', '.JPG', '.JPEG', '.PNG', '.WEBP']
   for (const ext of extensions) {
     const exact = imageMap[prefix + ext]
     if (exact) return exact
   }
-
-  // 2. Try prefix match (school-trip1.jpg, school-trip2.jpg, school-trip_01.jpg etc.)
   const prefixLower = prefix.toLowerCase()
-  const keys = Object.keys(imageMap).sort() // sort for consistent ordering
+  const keys = Object.keys(imageMap).sort()
   const match = keys.find(k => k.toLowerCase().startsWith(prefixLower))
   if (match) return imageMap[match]
-
-  // 3. Return fallback if nothing found
   return fallback
 }
 
-// ─── Get ALL images matching a prefix, sorted ─────────────
-// imgsByPrefix('school-trip') → [url1, url2, url3, ...]
-// Useful for slideshows
 export function imgsByPrefix(prefix: string): string[] {
   const prefixLower = prefix.toLowerCase()
   return Object.entries(imageMap)

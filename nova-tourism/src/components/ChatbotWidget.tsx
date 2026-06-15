@@ -59,11 +59,12 @@ export default function ChatbotWidget() {
         </a>
         <a href="mailto:novatourism.info@gmail.com"
           className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-orange-100 hover:scale-110 transition-transform"
-          style={{ background: 'linear-gradient(135deg,#e63228,#f7941d)' }} title="Email">
+          style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }} title="Email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         </a>
         <a href="tel:+919730240400"
-          className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-100 hover:scale-110 transition-transform" title="Call">
+          className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-100 hover:scale-110 transition-transform" 
+          style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}title="Call">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         </a>
       </div>
@@ -73,8 +74,7 @@ export default function ChatbotWidget() {
         whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}
         onClick={() => setOpen(!open)}
         className="fixed right-5 bottom-5 z-50 w-14 h-14 rounded-full text-white flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow"
-        style={{ background: 'linear-gradient(135deg, #e63228, #f7941d)' }}
-      >
+        style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}      >
         <AnimatePresence mode="wait">
           {open
             ? <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}><X size={22} /></motion.div>
@@ -94,7 +94,7 @@ export default function ChatbotWidget() {
           >
             {/* Header */}
             <div className="p-4 flex items-center gap-3 text-white"
-              style={{ background: 'linear-gradient(135deg, #e63228, #f7941d)' }}>
+              style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}>
               <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
                 <Bot size={18} className="text-white" />
               </div>
@@ -116,7 +116,7 @@ export default function ChatbotWidget() {
                       ? 'text-white rounded-br-sm'
                       : 'bg-white text-gray-700 rounded-bl-sm shadow-sm border border-gray-100'
                   }`}
-                  style={msg.role === 'user' ? { background: 'linear-gradient(135deg, #e63228, #f7941d)' } : {}}>
+                  style={msg.role === 'user' ? { background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' } : {}}>
                     {msg.content}
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function ChatbotWidget() {
                 <div className="flex justify-start">
                   <div className="bg-white border border-gray-100 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1 shadow-sm">
                     {[0, 1, 2].map(i => (
-                      <div key={i} className="w-2 h-2 rounded-full bg-orange-400 animate-bounce" style={{ animationDelay: `${i * 0.2}s` }} />
+                      <div key={i} className="w-2 h-2 rounded-full bg-[#00B4D8] animate-bounce" style={{ animationDelay: `${i * 0.2}s` }} />
                     ))}
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export default function ChatbotWidget() {
             <div className="px-3 py-2 flex gap-2 overflow-x-auto bg-white border-t border-gray-100">
               {QUICK_REPLIES.map(q => (
                 <button key={q} onClick={() => sendMessage(q)}
-                  className="shrink-0 text-xs border border-orange-200 text-orange-600 px-3 py-1.5 rounded-full hover:bg-orange-50 transition-colors whitespace-nowrap">
+                  className="shrink-0 text-xs border border-[#00B4D8] text-[#00B4D8] px-3 py-1.5 rounded-full hover:bg-[#00B4D8] hover:text-white transition-colors whitespace-nowrap">
                   {q}
                 </button>
               ))}
@@ -150,11 +150,11 @@ export default function ChatbotWidget() {
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && sendMessage(input)}
                 placeholder="Ask me anything..."
-                className="flex-1 bg-gray-50 text-gray-800 text-sm rounded-full px-4 py-2 outline-none border border-gray-200 focus:border-orange-300 placeholder-gray-400 transition-colors"
+                className="flex-1 bg-gray-50 text-gray-800 text-sm rounded-full px-4 py-2 outline-none border border-gray-200 focus:border-blue-300 placeholder-gray-400 transition-colors"
               />
               <button onClick={() => sendMessage(input)}
                 className="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(135deg, #e63228, #f7941d)' }}>
+                style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}>
                 <Send size={14} />
               </button>
             </div>

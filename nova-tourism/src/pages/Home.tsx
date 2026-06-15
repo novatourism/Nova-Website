@@ -10,14 +10,10 @@ import VideoReviews from '../components/VideoReviews'
 import TripPartners from '../components/TripPartners'
 import GalleryPreview from '../components/GalleryPreview'
 import { imgsByPrefix } from '../assets/imageMap'
+import ServiceCard from '../components/ServiceCard'
+import { ALL_SERVICES } from '../data/services'
 
-const CATEGORIES = [
-  { emoji: '🎒', label: 'School Trips',  desc: 'Educational & fun adventures', cat: 'school',    color: 'from-blue-500 to-cyan-500' },
-  { emoji: '💼', label: 'Corporate',     desc: 'Team building retreats',        cat: 'corporate', color: 'from-purple-500 to-indigo-500' },
-  { emoji: '🌿', label: 'Getaways',      desc: 'Weekend escapes',               cat: 'normal',    color: 'from-green-500 to-emerald-500' },
-  { emoji: '🎭', label: 'Indoor Events', desc: 'Themed & custom events',        cat: 'indoor',    color: 'from-pink-500 to-rose-500' },
-  { emoji: '🏔️', label: 'Outdoor',       desc: 'Treks & adventures',            cat: 'outdoor',   color: 'from-orange-500 to-amber-500' },
-]
+
 
 const TESTIMONIALS = [
   { name: 'Priya Sharma', role: 'School Principal',       text: 'NOVA organized an amazing school trip for 200 students. Everything was perfectly planned and safe!',         stars: 5 },
@@ -35,10 +31,10 @@ const WHY_NOVA = [
 ]
 
 const STATS = [
-  { icon: Users,  value: '5,000+', label: 'Happy Travelers',  accentClass: 'bg-[#f7941d]', iconClass: 'text-[#f7941d]', bgClass: 'bg-[#fff5e6]' },
-  { icon: MapPin, value: '50+',    label: 'Destinations',     accentClass: 'bg-[#e63228]', iconClass: 'text-[#e63228]', bgClass: 'bg-[#fdecea]' },
-  { icon: Star,   value: '4.9',    label: 'Average Rating',   accentClass: 'bg-[#f7941d]', iconClass: 'text-[#f7941d]', bgClass: 'bg-[#fff5e6]' },
-  { icon: Award,  value: '7+',     label: 'Years Experience', accentClass: 'bg-[#e63228]', iconClass: 'text-[#e63228]', bgClass: 'bg-[#fdecea]' },
+  { icon: Users,  value: '5,000+', label: 'Happy Travelers',  accentClass: 'bg-[#00B4D8]', iconClass: 'text-[#00B4D8]', bgClass: 'bg-[#e6f7fb]' },
+  { icon: MapPin, value: '50+',    label: 'Destinations',     accentClass: 'bg-[#0A4C8A]', iconClass: 'text-[#0A4C8A]', bgClass: 'bg-[#e6eef5]' },
+  { icon: Star,   value: '4.9',    label: 'Average Rating',   accentClass: 'bg-[#00B4D8]', iconClass: 'text-[#00B4D8]', bgClass: 'bg-[#e6f7fb]' },
+  { icon: Award,  value: '7+',     label: 'Years Experience', accentClass: 'bg-[#0A4C8A]', iconClass: 'text-[#0A4C8A]', bgClass: 'bg-[#e6eef5]' },
 ]
 
 export default function Home() {
@@ -68,7 +64,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
 
       {/* ─── HERO ─────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section ref={heroRef}className="relative min-h-[85vh] md:h-screen flex items-center overflow-hidden">
         <motion.div style={{ y: heroY }} className="absolute inset-0">
           {heroImages.map((src, i) => (
             <img
@@ -95,35 +91,29 @@ export default function Home() {
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-            className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight"
           >
-            Where Every{' '}
-            <span className="bg-linear-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-              Journey
-            </span>{' '}
+            Where Every Journey{' '}
+            
+            
             Becomes a Memory
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
-            className="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto"
-          >
-            School trips, corporate retreats, adventure treks, and dream getaways — crafted with passion for Pune and beyond.
-          </motion.p>
-
           <motion.div
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link to="/packages"
-              className="bg-linear-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-amber-500/40 hover:scale-105 transition-all duration-300">
-              Explore Packages
-            </Link>
-            <Link to="/contact"
-              className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300">
-              Plan My Trip
-            </Link>
-          </motion.div>
+          initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <Link to="/services"
+            className="text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-lg"
+            style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}>
+            Explore Services
+          </Link>
+          <Link to="/quote"
+            className="text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-lg"
+            style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}>
+            Plan My Trip
+          </Link>
+        </motion.div>
         </motion.div>
 
         {/* Hero dots */}
@@ -178,78 +168,41 @@ export default function Home() {
       {/* ─── TRIP PARTNERS ─────────────────────────────────── */}
       <TripPartners />
 
-      {/* ─── WHAT WE OFFER ─────────────────────────────────── */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-center mb-14"
-        >
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-            What <span className="nova-text-gradient">We Offer</span>
-          </h2>
-          <p className="text-gray-500 max-w-xl mx-auto">From thrilling outdoor adventures to elegant indoor events — we do it all.</p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {CATEGORIES.map(({ emoji, label, desc, cat, color }, i) => (
-            <motion.div
-              key={cat}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -8, scale: 1.03 }}
-            >
-              <Link to={`/packages?category=${cat}`}
-                className="block bg-white border border-gray-100 hover:border-orange-200 rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-xl hover:shadow-orange-50 group">
-                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${color} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform text-2xl`}>
-                  {emoji}
-                </div>
-                <h3 className="text-gray-900 font-bold text-sm mb-1">{label}</h3>
-                <p className="text-gray-500 text-xs">{desc}</p>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ─── FEATURED PACKAGES ─────────────────────────────── */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="flex items-end justify-between mb-14"
-        >
-          <div>
-            <h2 className="text-4xl font-black text-gray-900 mb-3">
-              Featured <span className="nova-text-gradient">Packages</span>
+      {/* ─── OUR SERVICES ─────────────────────────────────────── */}
+        <section className="py-20 px-6 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center text-center mb-12"          >
+            <div className="text-center w-full">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3"
+              style={{ fontFamily: 'Playfair Display, serif' }}>
+              What We <span style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Offer</span>
             </h2>
-            <p className="text-gray-400">Handpicked experiences for every type of traveler</p>
+            <p className="text-gray-500">End-to-end travel & event solutions for every need</p>
           </div>
-          <Link to="/packages"
-            className="hidden md:flex items-center gap-2 font-semibold hover:gap-3 transition-all text-[#e63228]">
-            View All <ArrowRight size={16} />
-          </Link>
-        </motion.div>
+          </motion.div>
 
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-72 bg-gray-100 rounded-2xl animate-pulse" />
+          {/* 8 service cards — same grid as Featured Packages */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {ALL_SERVICES.slice(0, 8).map((svc, i) => (
+              <ServiceCard key={svc.slug} service={svc} index={i} />
             ))}
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredPackages.map((pkg, i) => (
-              <TripCard key={pkg.id} {...pkg} index={i} />
-            ))}
-          </div>
-        )}
 
-        <div className="text-center mt-10 md:hidden">
-          <Link to="/packages"
-            className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 border border-amber-500/30 px-6 py-3 rounded-full font-semibold">
-            View All Packages <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
+          {/* Mobile + desktop "View All" button */}
+          <div className="text-center mt-10">
+            <Link to="/services"
+              className="inline-flex items-center gap-2 text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}>
+              View All {ALL_SERVICES.length} Services <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+
+
+      
 
       {/* ─── GALLERY PREVIEW ───────────────────────────────── */}
       <GalleryPreview />
@@ -264,7 +217,7 @@ export default function Home() {
           className="text-center mb-14"
         >
           <h2 className="text-4xl font-black text-gray-900 mb-4">
-            What <span className="nova-text-gradient">Travelers Say</span>
+            What <span style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Travelers Say</span>
           </h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -296,8 +249,8 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-center mb-14">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              Why Choose <span className="text-amber-400">NOVA?</span>
+           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              Why Choose <span className="text-4xl md:text-5xl font-black text-white mb-4">NOVA?</span>
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -326,15 +279,16 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="bg-linear-to-br from-orange-50 to-red-50 border border-orange-100 rounded-3xl p-12"
-          >
+              className="rounded-3xl p-12 border border-blue-100"
+              style={{ background: 'linear-gradient(135deg, rgba(10,76,138,0.04), rgba(0,180,216,0.06))' }}          >
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              Ready to <span className="nova-text-gradient">Explore?</span>
+              Ready to <span style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Explore?</span>
             </h2>
             <p className="text-gray-600 text-lg mb-8">Let's plan your perfect trip. Talk to our travel experts today.</p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to="/contact"
-                className="bg-linear-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-lg shadow-amber-500/30">
+              <Link to="/quote"
+              className="flex items-center gap-2 text-white px-3 sm:px-8 py-4 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:scale-105 transition-transform hover:shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}>
                 Get in Touch
               </Link>
 
