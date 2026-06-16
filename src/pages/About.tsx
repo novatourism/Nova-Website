@@ -119,7 +119,7 @@ export default function About() {
                 style={{ background: 'linear-gradient(135deg, #0A4C8A, #00B4D8)' }}
               >
                 <img
-                  src="/src/assets/images/Amey-Borate.jpg"
+                  src={imgByPrefix('Amey-Borate', '')}
                   alt="Amey Borate"
                   className="w-full h-full object-cover"
                   onError={(e) => {
